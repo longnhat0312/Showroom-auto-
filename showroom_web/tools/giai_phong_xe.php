@@ -1,0 +1,1 @@
+<?php if(PHP_SAPI!=='cli'){http_response_code(404);exit;}require dirname(__DIR__).'/includes/bootstrap.php';require APP_ROOT.'/services/thanh_toan.php';echo 'Đã kiểm tra '.expire_holds().' VIN hết hạn.'.PHP_EOL;

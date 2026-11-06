@@ -1,0 +1,30 @@
+# 1. Cấu hình & Bảo mật (Không push pass DB)
+/config/db.php
+.env
+.env.*
+
+# 2. Thư viện Composer (Chỉ cần giữ composer.json & composer.lock)
+/vendor/
+
+# 3. File Log & Tạm
+*.log
+/kiem_tra_ket_noi.php
+*.bak
+*.tmp
+
+# 4. Dump database tạm thời (Không ảnh hưởng folder database/ gốc)
+*.sql.gz
+*.sql.bak
+dump.sql
+
+# 5. IDE & Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 6. File rác hệ điều hành
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

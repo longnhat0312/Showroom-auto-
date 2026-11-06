@@ -1,0 +1,1 @@
+<?php class DongXe {public static function cauHinh(string $id):array{return db_all('SELECT c.* FROM cau_hinh_xe c JOIN dong_xe d ON d.ma_dong_xe=c.ma_dong_xe WHERE d.ma_dong_xe=? AND d.hien_thi=1 AND c.hien_thi=1',[$id]);}}

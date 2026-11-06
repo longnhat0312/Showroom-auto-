@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/includes/bootstrap.php';require APP_ROOT.'/services/vnpay_gateway.php';$me=require_role(['KHACH_HANG']);require_post();$link=start_vnpay($me,post('so_hop_dong'));header('Location: '.$link);exit;

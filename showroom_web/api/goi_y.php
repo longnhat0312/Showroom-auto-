@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/includes/bootstrap.php';$q=mb_substr(get('q'),0,100);$rows=mb_strlen($q)<2?[]:db_all('SELECT DISTINCT d.ten_dong_xe ten FROM dong_xe d JOIN cau_hinh_xe c ON c.ma_dong_xe=d.ma_dong_xe WHERE d.hien_thi=1 AND c.hien_thi=1 AND d.ten_dong_xe LIKE ? ORDER BY ten LIMIT 8',['%'.$q.'%']);json_response(['items'=>array_column($rows,'ten')]);

@@ -1,0 +1,89 @@
+{
+  "ngay_tham_khao": "2026-11-06",
+  "models": [
+    {
+      "ma_dong_xe": "TMV_VIOS",
+      "ten_dong_xe": "Vios",
+      "phan_khuc": "Sedan",
+      "so_cho_ngoi": 5,
+      "ma_cau_hinh": "TMV_VIOS_2026",
+      "ten_cau_hinh": "1.5E-CVT",
+      "nhien_lieu": "XANG",
+      "hop_so": "CVT",
+      "dong_co": "1496 cc · 2NR-FE",
+      "gia_niem_yet": 488000000,
+      "mau_sac": "Đỏ (3R3)",
+      "anh": "assets/image/mau/toyota_vios.png",
+      "nguon": "https://www.toyota.com.vn/vios",
+      "nguon_anh": "https://www.toyota.com.vn/Resources/Vehicles/318/1514/exterior-colors/51fb53ab4c1e9e7e990087e749f27cab-c6e3a2e2e3.png?v=8c1908fda2",
+      "hop_so_nguon": "Hộp số tự động vô cấp",
+      "vins": [
+        "ZZZ20260000000001",
+        "ZZZ20260000000002"
+      ]
+    },
+    {
+      "ma_dong_xe": "TMV_YARIS_CROSS",
+      "ten_dong_xe": "Yaris Cross",
+      "phan_khuc": "SUV",
+      "so_cho_ngoi": 5,
+      "ma_cau_hinh": "TMV_YARIS_CROSS_2026",
+      "ten_cau_hinh": "HEV",
+      "nhien_lieu": "HYBRID",
+      "hop_so": "CVT",
+      "dong_co": "1496 cc · 2NR-VEX",
+      "gia_niem_yet": 733000000,
+      "mau_sac": "Đen (218)",
+      "anh": "assets/image/mau/toyota_yaris_cross.png",
+      "nguon": "https://www.toyota.com.vn/yaris-cross",
+      "nguon_anh": "https://www.toyota.com.vn/Resources/Vehicles/502/1943/exterior-colors/4a3688fa5076f0ec5620031aa941dc47-f274c803fb.png?v=4b5b0d6313",
+      "hop_so_nguon": "Số tự động vô cấp",
+      "vins": [
+        "ZZZ20260000000003",
+        "ZZZ20260000000004"
+      ]
+    },
+    {
+      "ma_dong_xe": "TMV_COROLLA_CROSS",
+      "ten_dong_xe": "Corolla Cross",
+      "phan_khuc": "SUV",
+      "so_cho_ngoi": 5,
+      "ma_cau_hinh": "TMV_COROLLA_CROSS_2026",
+      "ten_cau_hinh": "HEV",
+      "nhien_lieu": "HYBRID",
+      "hop_so": "CVT",
+      "dong_co": "1798 cc · 2ZR-FXE",
+      "gia_niem_yet": 865000000,
+      "mau_sac": "Xám ánh bạc (1H5)",
+      "anh": "assets/image/mau/toyota_corolla_cross.png",
+      "nguon": "https://www.toyota.com.vn/corolla-cross",
+      "nguon_anh": "https://www.toyota.com.vn/Resources/Vehicles/493/1923/exterior-colors/2f0a8b55cb515545dd371eff3363d636-130f0a08b0.png?v=c8220fdba8",
+      "hop_so_nguon": "Số tự động vô cấp",
+      "vins": [
+        "ZZZ20260000000005",
+        "ZZZ20260000000006"
+      ]
+    },
+    {
+      "ma_dong_xe": "TMV_CAMRY",
+      "ten_dong_xe": "Camry",
+      "phan_khuc": "Sedan",
+      "so_cho_ngoi": 5,
+      "ma_cau_hinh": "TMV_CAMRY_2026",
+      "ten_cau_hinh": "HEV Luxury",
+      "nhien_lieu": "HYBRID",
+      "hop_so": "CVT",
+      "dong_co": "2487 cc · A25A-FXS",
+      "gia_niem_yet": 1460000000,
+      "mau_sac": "Đen (218)",
+      "anh": "assets/image/mau/toyota_camry.png",
+      "nguon": "https://www.toyota.com.vn/camry",
+      "nguon_anh": "https://www.toyota.com.vn/Resources/Vehicles/316/11939/exterior-colors/ae10f9e59b774dc4a63487a1419e1534-9274e0d689.png?v=83a60c958e",
+      "hop_so_nguon": "Số tự động vô cấp E-CVT",
+      "vins": [
+        "ZZZ20260000000007",
+        "ZZZ20260000000008"
+      ]
+    }
+  ]
+}

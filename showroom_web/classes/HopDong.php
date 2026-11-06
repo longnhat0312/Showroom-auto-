@@ -1,0 +1,1 @@
+<?php class HopDong {public static function xem(string $id,array $u):array{return contract($id,$u);}public static function banGiao(array $u,string $id):void{require_once APP_ROOT.'/services/thanh_toan.php';handover($u,$id);}public static function tienRong(string $id):int{require_once APP_ROOT.'/services/thanh_toan.php';return money_total($id);}}

@@ -1,0 +1,18 @@
+<?php
+require_once __DIR__.'/auth.php';
+function oauth_begin(string $provider): never {
+ if(!setting('external_auth'))redirect('dang_nhap.php');
+ $c=private_config('integrations')[$provider]??[];must(!empty($c['client_id'])&&!empty($c['client_secret'])&&!empty($c['redirect_uri']),'Đăng nhập '.$provider.' chưa được quản trị cấu hình.');$link=get('link')==='1';$u=$link?require_role(['KHACH_HANG','NHAN_VIEN','ADMIN']):null;
+ if($link&&($_SESSION['reauth_at']??0)<time()-300){$_SESSION['oauth_next']=$provider;redirect('xac_thuc/xac_thuc_lai.php');}
+ $state=bin2hex(random_bytes(32));$verifier=rtrim(strtr(base64_encode(random_bytes(48)),'+/','-_'),'=');$_SESSION['oauth']=['provider'=>$provider,'state'=>$state,'verifier'=>$verifier,'at'=>time(),'link_user'=>$u['id']??null];
+ $p=['client_id'=>$c['client_id'],'redirect_uri'=>$c['redirect_uri'],'state'=>$state,'response_type'=>'code'];if($provider==='google'){$p['scope']='openid email profile';$p['code_challenge']=rtrim(strtr(base64_encode(hash('sha256',$verifier,true)),'+/','-_'),'=');$p['code_challenge_method']='S256';$url='https://accounts.google.com/o/oauth2/v2/auth';}else{$p['scope']='public_profile,email';$url='https://www.facebook.com/v23.0/dialog/oauth';}header('Location: '.$url.'?'.http_build_query($p));exit;
+}
+function oauth_callback(string $provider): never {
+ if(!setting('external_auth'))redirect('dang_nhap.php');
+ $s=$_SESSION['oauth']??[];unset($_SESSION['oauth']);must(($s['provider']??'')===$provider&&($s['at']??0)>time()-600&&get('state')!==''&&hash_equals($s['state']??'',get('state'))&&get('code')!=='','Phiên đăng nhập mạng xã hội không hợp lệ.');$c=private_config('integrations')[$provider]??[];
+ if($provider==='google'){$token=http_json('https://oauth2.googleapis.com/token',['code'=>get('code'),'client_id'=>$c['client_id'],'client_secret'=>$c['client_secret'],'redirect_uri'=>$c['redirect_uri'],'grant_type'=>'authorization_code','code_verifier'=>$s['verifier']]);must(!empty($token['access_token']),'Không nhận được mã truy cập.');$profile=http_json('https://openidconnect.googleapis.com/v1/userinfo',null,['Authorization: Bearer '.$token['access_token']]);$subject=$profile['sub']??'';}
+ else{$token=http_json('https://graph.facebook.com/v23.0/oauth/access_token',['code'=>get('code'),'client_id'=>$c['client_id'],'client_secret'=>$c['client_secret'],'redirect_uri'=>$c['redirect_uri']]);must(!empty($token['access_token']),'Không nhận được mã truy cập.');$profile=http_json('https://graph.facebook.com/v23.0/me?'.http_build_query(['fields'=>'id,name','appsecret_proof'=>hash_hmac('sha256',$token['access_token'],$c['client_secret'])]),null,['Authorization: Bearer '.$token['access_token']]);$subject=$profile['id']??'';}
+ must(is_string($subject)&&$subject!==''&&strlen($subject)<=255,'Không nhận được định danh đã xác thực.');
+ if(!empty($s['link_user'])){$u=require_role(['KHACH_HANG','NHAN_VIEN','ADMIN']);must((int)$u['id']===(int)$s['link_user'],'Tài khoản liên kết đã thay đổi.',403);try{execute('INSERT INTO danh_tinh_oauth(tai_khoan_id,nha_cung_cap,subject)VALUES(?,?,?)',[$u['id'],$provider,$subject]);}catch(mysqli_sql_exception $e){if($e->getCode()===1062)throw new AppError('Định danh này đã được liên kết.');throw $e;}audit('LIEN_KET_OAUTH','tai_khoan',(string)$u['id'],null,['provider'=>$provider]);flash('Đã liên kết '.$provider);redirect('khach_hang/ho_so.php');}
+ $u=db_one("SELECT t.* FROM tai_khoan t JOIN danh_tinh_oauth o ON o.tai_khoan_id=t.id WHERE o.nha_cung_cap=? AND o.subject=? AND t.trang_thai='HOAT_DONG'",[$provider,$subject]);must((bool)$u,'Chưa liên kết tài khoản này. Đăng nhập bằng mật khẩu rồi liên kết trong hồ sơ.');auth_complete($u);
+}

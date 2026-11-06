@@ -1,0 +1,1 @@
+<?php class QuanTriVien extends TaiKhoan {public function allows(string $permission):bool{return true;}public function nhatKy(int $limit=100):array{$limit=max(1,min(300,$limit));return db_all("SELECT * FROM nhat_ky ORDER BY id DESC LIMIT $limit");}}

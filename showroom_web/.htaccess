@@ -1,0 +1,4 @@
+Options -Indexes
+<FilesMatch "^(composer\.(json|lock)|.*\.(sql|log|md|bak))$">
+Require all denied
+</FilesMatch>

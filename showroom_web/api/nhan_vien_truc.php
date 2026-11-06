@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/includes/bootstrap.php';$u=require_role(['NHAN_VIEN']);require_post();execute('INSERT INTO nhan_vien_truc(nhan_vien_id,online_luc)VALUES(?,NOW()) ON DUPLICATE KEY UPDATE online_luc=NOW()',[$u['id']]);json_response(['ok'=>true]);

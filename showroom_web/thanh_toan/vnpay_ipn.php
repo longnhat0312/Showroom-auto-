@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/includes/bootstrap.php';require APP_ROOT.'/services/vnpay_gateway.php';if(session_status()===PHP_SESSION_ACTIVE)session_write_close();json_response(vnpay_notification($_GET));

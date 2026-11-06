@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/includes/bootstrap.php';$u=require_role(['KHACH_HANG']);$p=db_one('SELECT p.trang_thai,h.tai_khoan_id FROM hoa_don p JOIN hop_dong h ON h.so_hop_dong=p.so_hop_dong WHERE p.ma_hoa_don=?',[get('id')]);must($p&&(int)$p['tai_khoan_id']===(int)$u['id'],'Không tìm thấy giao dịch.',404);json_response(['status'=>$p['trang_thai']]);

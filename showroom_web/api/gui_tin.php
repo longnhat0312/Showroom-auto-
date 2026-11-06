@@ -1,0 +1,1 @@
+<?php require dirname(__DIR__).'/includes/bootstrap.php';require APP_ROOT.'/services/chat.php';$u=require_role(['KHACH_HANG','NHAN_VIEN','ADMIN']);require_post();$id=send_chat($u,(int)post('id'),post('noi_dung'),$_FILES['file']??null);json_response(['id'=>$id]);

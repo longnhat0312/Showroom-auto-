@@ -1,0 +1,1 @@
+<?php class Xe {public static function theoVin(string $vin):?array{return db_one('SELECT * FROM xe WHERE so_khung_vin=?',[$vin]);}public static function nhap(array $u,array $data):string{require_once APP_ROOT.'/services/catalog.php';return stock_save($u,$data);}}

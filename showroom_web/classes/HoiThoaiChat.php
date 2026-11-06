@@ -1,0 +1,1 @@
+<?php class HoiThoaiChat {public static function xem(int $id,array $u):array{require_once APP_ROOT.'/services/chat.php';return conversation($id,$u);}public static function tao(array $u,string $config,string $body):int{require_once APP_ROOT.'/services/chat.php';return create_chat($u,$config,$body);}}
